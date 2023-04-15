@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react";
 import { MockedProvider } from '@apollo/client/testing';
+import Theme from '../src/theme'
+import React from "react";
 
 const preview: Preview = {
   parameters: {
@@ -18,7 +20,14 @@ const preview: Preview = {
     apolloClient: {
       MockedProvider
     }
-  }
+  },
+  decorators: [
+    (Story) => (
+      <Theme>
+        <Story />
+      </Theme>
+    ),
+  ],  
 };
 
 export default preview;
