@@ -4,11 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:studio": "npm run dev -w studio",
+    "dev:frontend": "npm run dev -w frontend",
+    "dev": "concurrently --kill-others-on-fail \"npm run dev:*\""
   },
   "author": "",
   "license": "ISC",
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
 }

@@ -1,0 +1,9 @@
+import { createClient } from '@sanity/client'
+
+const client = createClient({
+	projectId: 'qyygg2kr', // you can find this in sanity.json
+	dataset: 'production', // or the name you chose in step 1
+	useCdn: true // `false` if you want to ensure fresh data
+})
+
+export default client
