@@ -29,11 +29,10 @@
     "next": "13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "require": "^2.4.20",
+    "require": "^0.4.4",
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@chakra-ui/storybook-addon": "^4.0.16",
     "@graphql-codegen/cli": "^3.3.0",
     "@graphql-codegen/client-preset": "^3.0.0",
     "@graphql-codegen/typescript-operations": "^3.0.3",
@@ -42,6 +41,7 @@
     "@storybook/addon-essentials": "^7.0.5",
     "@storybook/addon-interactions": "^7.0.5",
     "@storybook/addon-links": "^7.0.5",
+    "@storybook/addon-mdx-gfm": "^7.0.5",
     "@storybook/blocks": "^7.0.5",
     "@storybook/nextjs": "^7.0.5",
     "@storybook/react": "^7.0.5",

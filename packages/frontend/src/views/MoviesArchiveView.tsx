@@ -31,6 +31,7 @@ const MoviesArchiveView = (props: Props) => {
 
 								return (
 									<MovieCard
+										key={movie._id}
 										title={movie.title || ''}
 										url={`/movie/${slug?.current || ''}`}
 										image={imageUrl || ''}
