@@ -1,5 +1,5 @@
-import {defineField, defineType} from 'sanity'
-import {MdLocalPlay as icon} from 'react-icons/md'
+import { defineField, defineType } from 'sanity'
+import { MdLocalPlay as icon } from 'react-icons/md'
 
 export default defineType({
   name: 'screening',
@@ -17,7 +17,7 @@ export default defineType({
       name: 'movie',
       title: 'Movie',
       type: 'reference',
-      to: [{type: 'movie'}],
+      to: [{ type: 'movie' }],
       description: 'Which movie are we screening',
     }),
     defineField({
@@ -43,6 +43,7 @@ export default defineType({
       title: 'Ends at',
       type: 'datetime',
       description: 'When does the screening end?',
+      validation: (Rule) => Rule.required().min(Rule.valueOfField('beginAt')).error('End time must be after start time'),
     }),
     defineField({
       name: 'allowedGuests',
@@ -50,9 +51,9 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'Members', value: 'members'},
-          {title: 'Members and friends', value: 'friends'},
-          {title: 'Anyone', value: 'anyone'},
+          { title: 'Members', value: 'members' },
+          { title: 'Members and friends', value: 'friends' },
+          { title: 'Anyone', value: 'anyone' },
         ],
         layout: 'radio',
       },

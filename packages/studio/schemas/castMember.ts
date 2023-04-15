@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'castMember',
@@ -14,7 +14,7 @@ export default defineType({
       name: 'person',
       title: 'Actor',
       type: 'reference',
-      to: [{type: 'person'}],
+      to: [{ type: 'person' }],
     }),
     defineField({
       name: 'externalId',
