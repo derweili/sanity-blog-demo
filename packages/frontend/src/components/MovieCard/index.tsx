@@ -19,7 +19,7 @@ const MovieCard = ({title, description, year, url, image}: MovieCardProps) => {
 					image && <Image src={image} width={300} height={300} alt={`${title} poster`} />
 				}
 				<Stack mt='6' spacing='3'>
-					<Heading size='md'>Living room Sofa</Heading>
+					<Heading size='md'>{title}</Heading>
 					<Text>
 						This sofa is perfect for modern tropical spaces, baroque inspired
 						spaces, earthy toned spaces and for people who love a chic design with a
@@ -33,7 +33,7 @@ const MovieCard = ({title, description, year, url, image}: MovieCardProps) => {
 			<Divider />
 			<CardFooter>
 				<ButtonGroup spacing='2'>
-					<Link href='/'>
+					<Link href={url}>
 						<Button as="span" variant='solid' colorScheme='blue'>
 							Buy now
 						</Button>

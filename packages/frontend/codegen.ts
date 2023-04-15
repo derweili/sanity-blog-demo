@@ -9,11 +9,11 @@ const { NEXT_PUBLIC_GRAPHQL_ENDPOINT } = process.env
 
 const config: CodegenConfig = {
 	schema: NEXT_PUBLIC_GRAPHQL_ENDPOINT,
-	documents: ['src/data/graphql/**/*.graphql'],
 	generates: {
-		'./src/data/graphql/generated/': {
+		'./src/data/graphql/generated/graphql.ts': {
+			overwrite: true,
+			documents: ['./src/data/graphql/**/*.graphql'],
 			plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
-			preset: 'client',
 		}
 	}
 }

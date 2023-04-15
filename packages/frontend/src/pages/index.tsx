@@ -1,12 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import MovieCard from '@components/MovieCard'
-import MovieGrid from '@components/MovieGrid'
-
-const inter = Inter({ subsets: ['latin'] })
+import { addApolloState, initializeApollo } from '@data/client'
+import MoviesArchiveView, { MoviesViewQueries } from '@views/MoviesArchiveView'
 
 export default function Home() {
+
   return (
     <>
       <Head>
@@ -16,24 +14,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <MovieGrid>
-          { /* Loop over 5 times <MovieCard /> */ }
-
-          {
-            Array(5).fill(0).map((_, index) => {
-              return (
-                <MovieCard
-                  title='test'
-                  url='/test'
-                  image={`https://picsum.photos/seed/picsum${ index }/400`}
-                  description='Desciption'
-                  year='2021'
-                  />
-              )
-            })
-          }
-        </MovieGrid>
+        <MoviesArchiveView />
       </main>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const apolloClient = initializeApollo()
+
+  // await for all queries
+  await Promise.all(MoviesViewQueries.map((query) => apolloClient.query({
+    query,
+    variables: {},
+  })))
+
+  return addApolloState(apolloClient, {
+    props: {},
+  })
 }
