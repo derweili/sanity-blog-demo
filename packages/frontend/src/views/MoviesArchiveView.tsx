@@ -7,9 +7,18 @@ type Props = {}
 
 const MoviesArchiveView = (props: Props) => {
 	
-	const {data, loading} = useMoviesQuery()
+	const {data, loading, error} = useMoviesQuery()
 	console.log('MoviesArchiveView', loading, data);
   const { allMovie } = data  || {}
+
+	if (error) {
+		return (
+			<div>
+				<p>Error</p>
+				{ error.message }
+			</div>
+		)
+	}
 
 	return (
 		<>

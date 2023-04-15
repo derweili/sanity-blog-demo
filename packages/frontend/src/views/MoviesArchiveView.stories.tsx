@@ -46,10 +46,49 @@ Primary.parameters = {
                   }
               }))
             ]
+          },
+        },
+      }
+    ]
+  }
+};
+
+export const ErrorStory: Story = {
+  name: 'Error',
+  args: {},
+};
+
+ErrorStory.parameters = {
+  apolloClient: {
+    mocks: [
+      {
+        request: {
+          query: MoviesDocument
+        },
+        error: new Error('Something went wrong')
+      }
+    ]
+  }
+};
+
+export const Loading: Story = {
+  args: {},
+};
+
+Loading.parameters = {
+  apolloClient: {
+    mocks: [
+      {
+        delay: 999999999999999,
+        request: {
+          query: MoviesDocument
+        },
+        result: {
+          data: {
+            allMovie: []
           }
         }
       }
     ]
   }
 };
-
