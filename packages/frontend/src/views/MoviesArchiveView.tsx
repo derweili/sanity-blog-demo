@@ -8,6 +8,7 @@ type Props = {}
 const MoviesArchiveView = (props: Props) => {
 	
 	const {data, loading} = useMoviesQuery()
+	console.log('MoviesArchiveView', loading, data);
   const { allMovie } = data  || {}
 
 	return (
