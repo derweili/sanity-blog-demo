@@ -6,12 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@graphql-codegen/cli": "^3.3.0",
+    "@graphql-codegen/client-preset": "^3.0.0",
     "@sanity/client": "^5.4.2",
     "@types/node": "18.15.11",
     "@types/react": "18.0.35",
@@ -19,10 +22,15 @@
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "framer-motion": "^10.12.2",
+    "graphql": "^16.6.0",
     "groq": "^3.8.3",
     "next": "13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "require": "^2.4.20",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7"
   }
 }
