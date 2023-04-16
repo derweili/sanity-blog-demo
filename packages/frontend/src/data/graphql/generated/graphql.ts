@@ -1018,64 +1018,112 @@ export type StringFilter = {
   nin?: InputMaybe<Array<Scalars['String']>>;
 };
 
+export type MovieDetailsFragment = { __typename?: 'Movie', _id?: string | null, _type?: string | null, title?: string | null, _createdAt?: any | null, _updatedAt?: any | null, releaseDate?: any | null, externalId?: number | null, poster?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null };
+
+export type Movies_By_SlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type Movies_By_SlugQuery = { __typename?: 'RootQuery', allMovie: Array<{ __typename?: 'Movie', _id?: string | null, _type?: string | null, title?: string | null, _createdAt?: any | null, _updatedAt?: any | null, releaseDate?: any | null, externalId?: number | null, poster?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null }> };
+
 export type MoviesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MoviesQuery = { __typename?: 'RootQuery', allMovie: Array<{ __typename?: 'Movie', _id?: string | null, _type?: string | null, title?: string | null, _createdAt?: any | null, _updatedAt?: any | null, releaseDate?: any | null, externalId?: number | null, poster?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null }> };
 
-
-export const MoviesDocument = gql`
-    query MOVIES {
-  allMovie {
-    _id
+export const MovieDetailsFragmentDoc = gql`
+    fragment MovieDetails on Movie {
+  _id
+  _type
+  title
+  _createdAt
+  _updatedAt
+  releaseDate
+  externalId
+  poster {
     _type
-    title
-    _createdAt
-    _updatedAt
-    releaseDate
-    externalId
-    poster {
-      _type
-      crop {
-        _key
-        top
-      }
-      asset {
-        _id
-        originalFilename
-        label
-        description
-        altText
-        url
-        size
-        sha1hash
-        metadata {
-          _key
-          blurHash
-        }
-        source {
-          url
-          name
-        }
-      }
-      hotspot {
-        height
-        width
-        x
-        y
-      }
-      crop {
-        _type
-        _key
-      }
-    }
-    slug {
+    crop {
       _key
-      current
+      top
     }
+    asset {
+      _id
+      originalFilename
+      label
+      description
+      altText
+      url
+      size
+      sha1hash
+      metadata {
+        _key
+        blurHash
+      }
+      source {
+        url
+        name
+      }
+    }
+    hotspot {
+      height
+      width
+      x
+      y
+    }
+    crop {
+      _type
+      _key
+    }
+  }
+  slug {
+    _key
+    current
   }
 }
     `;
+export const Movies_By_SlugDocument = gql`
+    query MOVIES_BY_SLUG($slug: String!) {
+  allMovie(where: {slug: {current: {eq: $slug}}}) {
+    ...MovieDetails
+  }
+}
+    ${MovieDetailsFragmentDoc}`;
+
+/**
+ * __useMovies_By_SlugQuery__
+ *
+ * To run a query within a React component, call `useMovies_By_SlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMovies_By_SlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMovies_By_SlugQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useMovies_By_SlugQuery(baseOptions: Apollo.QueryHookOptions<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>(Movies_By_SlugDocument, options);
+}
+export function useMovies_By_SlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>(Movies_By_SlugDocument, options);
+}
+export type Movies_By_SlugQueryHookResult = ReturnType<typeof useMovies_By_SlugQuery>;
+export type Movies_By_SlugLazyQueryHookResult = ReturnType<typeof useMovies_By_SlugLazyQuery>;
+export type Movies_By_SlugQueryResult = Apollo.QueryResult<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>;
+export const MoviesDocument = gql`
+    query MOVIES {
+  allMovie {
+    ...MovieDetails
+  }
+}
+    ${MovieDetailsFragmentDoc}`;
 
 /**
  * __useMoviesQuery__
