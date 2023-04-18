@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
+
+// get backend base URL from env if it exists
+const backendBaseURL = process.env.NEXT_PUBLIC_SANITY_STUDIO_BACKEND_BASE_URL || 'http://localhost:3333'
+
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
@@ -22,11 +26,11 @@ const nextConfig = {
     return [
       {
         source: '/backend/',
-        destination: 'http://localhost:3333/backend/',
+        destination: `${backendBaseURL}/backend/`,
       },
       {
         source: '/backend/:path*',
-        destination: 'http://localhost:3333/backend/:path*',
+        destination: `${backendBaseURL}/backend/:path*`,
       },
     ]
   },
