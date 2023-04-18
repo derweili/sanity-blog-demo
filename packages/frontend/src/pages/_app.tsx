@@ -1,4 +1,5 @@
 import { ApolloProvider } from '@apollo/client'
+import SimpleSidebar from '@components/Layout'
 import { useApollo } from '@data/client'
 import '@styles/globals.css'
 import Theme from '@theme'
@@ -10,7 +11,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={apolloClient}>
       <Theme>
-        <Component {...pageProps} />
+        <SimpleSidebar>
+          <Component {...pageProps} />
+        </SimpleSidebar>
       </Theme>
     </ApolloProvider>
   )

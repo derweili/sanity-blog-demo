@@ -6,6 +6,12 @@ export default defineType({
   title: 'Screening',
   type: 'document',
   icon,
+  groups: [
+    {
+      name: 'registration',
+      title: 'Registration',
+    }
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -49,6 +55,7 @@ export default defineType({
       name: 'allowedGuests',
       title: 'Who can come?',
       type: 'string',
+      group: 'registration',
       options: {
         list: [
           { title: 'Members', value: 'members' },
@@ -59,9 +66,17 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'registrationUrl',
+      title: 'Registration URL',
+      type: 'url',
+      group: 'registration',
+      hidden: ({ document }) => document?.allowedGuests !== 'anyone',
+    }),
+    defineField({
       name: 'infoUrl',
       title: 'More info at',
       type: 'url',
+      group: 'registration',
       description:
         'URL to imdb.com, rottentomatoes.com or some other place with reviews, stats, etc',
     }),
@@ -69,12 +84,20 @@ export default defineType({
       name: 'ticket',
       title: 'Ticket',
       type: 'file',
+      group: 'registration',
       description: 'PDF for printing a physical ticket',
     }),
+    defineField({
+      name: 'agenda',
+      title: 'Agenda',
+      type: 'array',
+      of: [{ type: 'block' }],
+    })
   ],
   preview: {
     select: {
       title: 'title',
+      subtitle: 'movie.title',
       media: 'movie.poster',
     },
   },

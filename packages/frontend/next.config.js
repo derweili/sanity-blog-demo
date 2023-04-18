@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  trailingSlash: true,
   images: {
     remotePatterns: [
       {
@@ -15,6 +16,18 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.sanity.io',
       }
+    ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/backend/',
+        destination: 'http://localhost:3333/backend/',
+      },
+      {
+        source: '/backend/:path*',
+        destination: 'http://localhost:3333/backend/:path*',
+      },
     ]
   },
 }

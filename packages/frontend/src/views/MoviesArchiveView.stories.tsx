@@ -28,12 +28,14 @@ Primary.parameters = {
         result: {
           data: {
             allMovie: [
-              ...Array.from({ length: 4 }).map((_, i) => ({
+              ...Array.from({ length: 5 }).map((_, i) => ({
                   _id: "movie_78",
                   _type : "movie",
                   title: 'Movie 1',
+                  __typename: "Movie",
                   description: 'Description 1',
                   releaseDate: '2021-01-01',
+                  reatedAt: '2021-01-01',
                   slug: {
                     _type: 'slug',
                     current: 'movie-1'

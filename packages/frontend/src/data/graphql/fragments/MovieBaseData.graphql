@@ -1,0 +1,15 @@
+fragment MovieBaseData on Movie {
+  _id
+  _type
+  title
+  _createdAt
+  _updatedAt
+  releaseDate
+  externalId
+  poster {
+    ...ImageData
+  }
+  slug {
+    ...SlugData
+  }
+}

@@ -16,7 +16,7 @@ const MovieCard = ({title, description, year, url, image}: MovieCardProps) => {
 		<Card maxW='sm'>
 			<CardBody>
 				{
-					image && <Image src={image} width={300} height={300} alt={`${title} poster`} />
+					image && <Image src={image} width={500} height={300} alt={`${title} poster`} />
 				}
 				<Stack mt='6' spacing='3'>
 					<Heading size='md'>{title}</Heading>

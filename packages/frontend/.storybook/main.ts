@@ -10,7 +10,7 @@ const config: StorybookConfig = {
     autodocs: "tag"
   },
   webpackFinal: async config => {
-    const aliases = ['components', 'views', 'styles', 'data', 'theme'];
+    const aliases = ['components', 'modules', 'views', 'styles', 'data', 'theme'];
     // add resolve aliases
     config.resolve.alias = {
       ...config.resolve.alias,

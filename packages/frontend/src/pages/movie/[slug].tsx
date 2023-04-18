@@ -1,30 +1,20 @@
 import { addApolloState, initializeApollo } from "@data/client"
 import { useMovies_By_SlugQuery, Movies_By_SlugDocument } from "@data/graphql/generated/graphql"
+import MovieView from "@views/MovieView"
+import { useRouter } from "next/router";
 
 export default function Movie(props : any) {
-	
-	const { data, loading, error} = useMovies_By_SlugQuery({
-		variables: {
-			slug: props.slugs
-		}
-	})
 
-	const movie = data && data.allMovie[0] || null
+	// get slug from route
+	const router = useRouter()
 
-	global.console.log(data, loading, error)
+	const { slug } = router.query
 
-	if (loading) return <p>Loading...</p>
-
-	if (error) return <p>Error: {error.message}</p>
-
-	if (!movie) return <p>Not found</p>
+	if(!slug) return null
 
 	return (
 		<>
-			<h1>Movie</h1>
-			<p>{movie.title}</p>
-			<p>{movie.slug?.current}</p>
-
+			<MovieView slug={ Array.isArray(slug) ? slug[0] : slug } />
 		</>
 	)
 }

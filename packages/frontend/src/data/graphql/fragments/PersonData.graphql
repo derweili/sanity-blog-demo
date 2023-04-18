@@ -1,0 +1,13 @@
+fragment PersonData on Person {
+  name
+  _id
+  _type
+  _createdAt
+  _updatedAt
+  slug {
+    ...SlugData
+  }
+  image {
+    ...ImageData
+  }
+}

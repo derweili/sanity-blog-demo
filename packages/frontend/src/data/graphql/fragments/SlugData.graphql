@@ -1,0 +1,4 @@
+fragment SlugData on Slug {
+  _key
+  current
+}

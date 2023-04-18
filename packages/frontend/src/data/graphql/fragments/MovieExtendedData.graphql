@@ -1,0 +1,17 @@
+fragment MovieExtendedData on Movie {
+  castMembers {
+    _key
+    _type
+    characterName
+    person {
+      ...PersonData
+    }
+  }
+  crewMembers {
+    department
+    job
+    person {
+      ...PersonData
+    }
+  }
+}

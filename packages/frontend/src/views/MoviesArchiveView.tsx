@@ -19,12 +19,14 @@ const MoviesArchiveView = (props: Props) => {
 			</div>
 		)
 	}
+	console.log('MoviesArchiveView', loading, data);
 
 	return (
 		<>
 			{
 				loading ? <p>Loading...</p> : <p>Loaded</p>
 			}
+
 
 			{
 				allMovie && (

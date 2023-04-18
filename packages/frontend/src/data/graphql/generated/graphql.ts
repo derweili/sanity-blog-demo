@@ -1018,22 +1018,73 @@ export type StringFilter = {
   nin?: InputMaybe<Array<Scalars['String']>>;
 };
 
-export type MovieDetailsFragment = { __typename?: 'Movie', _id?: string | null, _type?: string | null, title?: string | null, _createdAt?: any | null, _updatedAt?: any | null, releaseDate?: any | null, externalId?: number | null, poster?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null };
+export type ImageDataFragment = { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null };
+
+export type MovieBaseDataFragment = { __typename?: 'Movie', _id?: string | null, _type?: string | null, title?: string | null, _createdAt?: any | null, _updatedAt?: any | null, releaseDate?: any | null, externalId?: number | null, poster?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null };
+
+export type MovieExtendedDataFragment = { __typename?: 'Movie', castMembers?: Array<{ __typename?: 'CastMember', _key?: string | null, _type?: string | null, characterName?: string | null, person?: { __typename?: 'Person', name?: string | null, _id?: string | null, _type?: string | null, _createdAt?: any | null, _updatedAt?: any | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null, image?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null } | null } | null> | null, crewMembers?: Array<{ __typename?: 'CrewMember', department?: string | null, job?: string | null, person?: { __typename?: 'Person', name?: string | null, _id?: string | null, _type?: string | null, _createdAt?: any | null, _updatedAt?: any | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null, image?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null } | null } | null> | null };
+
+export type PersonDataFragment = { __typename?: 'Person', name?: string | null, _id?: string | null, _type?: string | null, _createdAt?: any | null, _updatedAt?: any | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null, image?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null };
+
+export type SlugDataFragment = { __typename?: 'Slug', _key?: string | null, current?: string | null };
 
 export type Movies_By_SlugQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-export type Movies_By_SlugQuery = { __typename?: 'RootQuery', allMovie: Array<{ __typename?: 'Movie', _id?: string | null, _type?: string | null, title?: string | null, _createdAt?: any | null, _updatedAt?: any | null, releaseDate?: any | null, externalId?: number | null, poster?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null }> };
+export type Movies_By_SlugQuery = { __typename?: 'RootQuery', allMovie: Array<{ __typename?: 'Movie', _id?: string | null, _type?: string | null, title?: string | null, _createdAt?: any | null, _updatedAt?: any | null, releaseDate?: any | null, externalId?: number | null, poster?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null, castMembers?: Array<{ __typename?: 'CastMember', _key?: string | null, _type?: string | null, characterName?: string | null, person?: { __typename?: 'Person', name?: string | null, _id?: string | null, _type?: string | null, _createdAt?: any | null, _updatedAt?: any | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null, image?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null } | null } | null> | null, crewMembers?: Array<{ __typename?: 'CrewMember', department?: string | null, job?: string | null, person?: { __typename?: 'Person', name?: string | null, _id?: string | null, _type?: string | null, _createdAt?: any | null, _updatedAt?: any | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null, image?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null } | null } | null> | null }> };
 
 export type MoviesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MoviesQuery = { __typename?: 'RootQuery', allMovie: Array<{ __typename?: 'Movie', _id?: string | null, _type?: string | null, title?: string | null, _createdAt?: any | null, _updatedAt?: any | null, releaseDate?: any | null, externalId?: number | null, poster?: { __typename?: 'Image', _type?: string | null, crop?: { __typename?: 'SanityImageCrop', _key?: string | null, top?: number | null, _type?: string | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, originalFilename?: string | null, label?: string | null, description?: string | null, altText?: string | null, url?: string | null, size?: number | null, sha1hash?: string | null, metadata?: { __typename?: 'SanityImageMetadata', _key?: string | null, blurHash?: string | null } | null, source?: { __typename?: 'SanityAssetSourceData', url?: string | null, name?: string | null } | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null } | null, slug?: { __typename?: 'Slug', _key?: string | null, current?: string | null } | null }> };
 
-export const MovieDetailsFragmentDoc = gql`
-    fragment MovieDetails on Movie {
+export const ImageDataFragmentDoc = gql`
+    fragment ImageData on Image {
+  _type
+  crop {
+    _key
+    top
+  }
+  asset {
+    _id
+    originalFilename
+    label
+    description
+    altText
+    url
+    size
+    sha1hash
+    metadata {
+      _key
+      blurHash
+    }
+    source {
+      url
+      name
+    }
+  }
+  hotspot {
+    height
+    width
+    x
+    y
+  }
+  crop {
+    _type
+    _key
+  }
+}
+    `;
+export const SlugDataFragmentDoc = gql`
+    fragment SlugData on Slug {
+  _key
+  current
+}
+    `;
+export const MovieBaseDataFragmentDoc = gql`
+    fragment MovieBaseData on Movie {
   _id
   _type
   title
@@ -1042,53 +1093,58 @@ export const MovieDetailsFragmentDoc = gql`
   releaseDate
   externalId
   poster {
-    _type
-    crop {
-      _key
-      top
-    }
-    asset {
-      _id
-      originalFilename
-      label
-      description
-      altText
-      url
-      size
-      sha1hash
-      metadata {
-        _key
-        blurHash
-      }
-      source {
-        url
-        name
-      }
-    }
-    hotspot {
-      height
-      width
-      x
-      y
-    }
-    crop {
-      _type
-      _key
-    }
+    ...ImageData
   }
   slug {
-    _key
-    current
+    ...SlugData
   }
 }
-    `;
+    ${ImageDataFragmentDoc}
+${SlugDataFragmentDoc}`;
+export const PersonDataFragmentDoc = gql`
+    fragment PersonData on Person {
+  name
+  _id
+  _type
+  _createdAt
+  _updatedAt
+  slug {
+    ...SlugData
+  }
+  image {
+    ...ImageData
+  }
+}
+    ${SlugDataFragmentDoc}
+${ImageDataFragmentDoc}`;
+export const MovieExtendedDataFragmentDoc = gql`
+    fragment MovieExtendedData on Movie {
+  castMembers {
+    _key
+    _type
+    characterName
+    person {
+      ...PersonData
+    }
+  }
+  crewMembers {
+    department
+    job
+    person {
+      ...PersonData
+    }
+  }
+}
+    ${PersonDataFragmentDoc}`;
 export const Movies_By_SlugDocument = gql`
     query MOVIES_BY_SLUG($slug: String!) {
   allMovie(where: {slug: {current: {eq: $slug}}}) {
-    ...MovieDetails
+    ...MovieBaseData
+    ...MovieExtendedData
   }
 }
-    ${MovieDetailsFragmentDoc}`;
+    ${MovieBaseDataFragmentDoc}
+${MovieExtendedDataFragmentDoc}`;
 
 /**
  * __useMovies_By_SlugQuery__
@@ -1107,23 +1163,23 @@ export const Movies_By_SlugDocument = gql`
  * });
  */
 export function useMovies_By_SlugQuery(baseOptions: Apollo.QueryHookOptions<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>(Movies_By_SlugDocument, options);
-}
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>(Movies_By_SlugDocument, options);
+      }
 export function useMovies_By_SlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>(Movies_By_SlugDocument, options);
-}
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>(Movies_By_SlugDocument, options);
+        }
 export type Movies_By_SlugQueryHookResult = ReturnType<typeof useMovies_By_SlugQuery>;
 export type Movies_By_SlugLazyQueryHookResult = ReturnType<typeof useMovies_By_SlugLazyQuery>;
 export type Movies_By_SlugQueryResult = Apollo.QueryResult<Movies_By_SlugQuery, Movies_By_SlugQueryVariables>;
 export const MoviesDocument = gql`
     query MOVIES {
   allMovie {
-    ...MovieDetails
+    ...MovieBaseData
   }
 }
-    ${MovieDetailsFragmentDoc}`;
+    ${MovieBaseDataFragmentDoc}`;
 
 /**
  * __useMoviesQuery__
@@ -1141,13 +1197,13 @@ export const MoviesDocument = gql`
  * });
  */
 export function useMoviesQuery(baseOptions?: Apollo.QueryHookOptions<MoviesQuery, MoviesQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<MoviesQuery, MoviesQueryVariables>(MoviesDocument, options);
-}
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MoviesQuery, MoviesQueryVariables>(MoviesDocument, options);
+      }
 export function useMoviesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MoviesQuery, MoviesQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<MoviesQuery, MoviesQueryVariables>(MoviesDocument, options);
-}
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MoviesQuery, MoviesQueryVariables>(MoviesDocument, options);
+        }
 export type MoviesQueryHookResult = ReturnType<typeof useMoviesQuery>;
 export type MoviesLazyQueryHookResult = ReturnType<typeof useMoviesLazyQuery>;
 export type MoviesQueryResult = Apollo.QueryResult<MoviesQuery, MoviesQueryVariables>;

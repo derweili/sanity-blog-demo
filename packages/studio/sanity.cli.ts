@@ -12,5 +12,8 @@ export default defineCliConfig({
       // workspace: 'staging',
       // id: 'schema-experiment',
     },
-  ]
+  ],
+  project: {
+    basePath: '/backend'
+  }
 })

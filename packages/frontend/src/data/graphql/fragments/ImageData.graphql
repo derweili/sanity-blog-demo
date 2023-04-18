@@ -1,0 +1,35 @@
+fragment ImageData on Image {
+  _type
+    crop {
+      _key
+      top
+    }
+    asset {
+      _id
+      originalFilename
+      label
+      description
+      altText
+      url
+      size
+      sha1hash
+      metadata {
+        _key
+        blurHash
+      }
+      source {
+        url
+        name
+      }
+    }
+    hotspot {
+      height
+      width
+      x
+      y
+    }
+    crop {
+      _type
+      _key
+    }
+}
