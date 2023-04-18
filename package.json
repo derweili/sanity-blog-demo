@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:studio": "npm run dev -w studio",
     "dev:frontend": "npm run dev -w frontend",
-    "dev": "concurrently --kill-others-on-fail \"npm run dev:*\""
+    "dev": "concurrently --kill-others-on-fail \"npm run dev:*\"",
+    "start:studio": "npm run start -w studio",
+    "start:frontend": "npm run start -w frontend",
+    "start": "concurrently --kill-others-on-fail \"npm run start:*\"",
+    "build": "npm run build --workspaces"
   },
   "author": "",
   "license": "ISC",

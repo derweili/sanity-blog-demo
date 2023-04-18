@@ -6,7 +6,7 @@ export const myCustomTool = () => {
     title: 'My Custom Tool',
     name: 'my-custom-tool', // localhost:3333/my-custom-tool
     icon: DashboardWidgetContainer,
-    component: (props) => (
+    component: (props: any) => (
       <Card padding={4}>
         <Text>My custom tool!</Text>
       </Card>

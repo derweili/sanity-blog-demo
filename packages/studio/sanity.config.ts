@@ -40,7 +40,7 @@ export default defineConfig({
     visionTool(),
     //googleMapsInput(),
   ],
-  tools: [myCustomTool()],
+  tools: [myCustomTool() as any],
 
   document: {
     actions: [

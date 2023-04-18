@@ -45,7 +45,7 @@ export default function Nav() {
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box>
             <Link href={'/'}>
-              <NavLink as="span">
+              <NavLink>
                 Home
               </NavLink>
             </Link>

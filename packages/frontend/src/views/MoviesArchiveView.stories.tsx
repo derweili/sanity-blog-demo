@@ -4,7 +4,7 @@ import MoviesArchiveView from './MoviesArchiveView';
 import moviesData from '@data/sanity/fixtures/getMoviesData.json';
 import { SanityMovie } from '@data';
 
-const movies : SanityMovie[] = moviesData.result;
+const movies : SanityMovie[] = moviesData.result as any;
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof MoviesArchiveView> = {
   title: 'Views/MoviesArchiveView',

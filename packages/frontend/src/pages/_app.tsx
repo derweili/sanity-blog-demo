@@ -1,6 +1,4 @@
-import { ApolloProvider } from '@apollo/client'
-import { Box, Button, Container } from '@chakra-ui/react'
-import SimpleSidebar from '@components/Layout'
+import { Container } from '@chakra-ui/react'
 import Nav from '@components/Layout/Nav'
 import '@styles/globals.css'
 import Theme from '@theme'
