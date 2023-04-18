@@ -16,6 +16,7 @@ import {
   ListItem,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import { PropsWithChildren } from 'react';
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
 
@@ -24,7 +25,7 @@ interface Details {
   value: string;
 }
 
-interface DetailViewProps {
+interface DetailViewProps extends PropsWithChildren {
   title: string;
   subtitle?: string;
   shortDescription?: string;
@@ -37,7 +38,7 @@ interface DetailViewProps {
 }
 
 
-export default function DetailView({title, subtitle, shortDescription, description, image, labelsHeading, labels, detailsHeading, details} : DetailViewProps) {
+export default function DetailView({title, subtitle, shortDescription, description, image, labelsHeading, labels, detailsHeading, details, children} : DetailViewProps) {
 
   const subtitleColor = useColorModeValue('gray.900', 'gray.400');
   const dividerColor  = useColorModeValue('gray.200', 'gray.600');
@@ -52,7 +53,7 @@ export default function DetailView({title, subtitle, shortDescription, descripti
       <SimpleGrid
         columns={{ base: 1, lg: 2 }}
         spacing={{ base: 8, md: 10 }}
-        py={{ base: 18, md: 24 }}>
+        py={{ base: 5, md: 10 }}>
         {
           image && (
             <Flex>
@@ -80,6 +81,7 @@ export default function DetailView({title, subtitle, shortDescription, descripti
                   fill
                   alt={`${title} poster`}
                   sizes='(max-width: 600px) 100vw, 600px'
+                  style={{ objectFit: 'cover' }}
                 />
               </Box>
             </Flex>
@@ -114,7 +116,7 @@ export default function DetailView({title, subtitle, shortDescription, descripti
               />
             }>
             {
-              (shortDescription || description) && (
+              (shortDescription || description || children) && (
                 <VStack spacing={{ base: 4, sm: 6 }}>
                   {
                     shortDescription && (
@@ -126,12 +128,15 @@ export default function DetailView({title, subtitle, shortDescription, descripti
                       </Text>
                     )
                   }
-                  {
+                  {/* {
                     description && (
                       <Text fontSize={'lg'}>
                         {description}
                       </Text>
                     )
+                  } */}
+                  {
+                    children
                   }
                 </VStack>
               )

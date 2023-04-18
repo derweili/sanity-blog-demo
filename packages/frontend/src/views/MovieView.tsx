@@ -1,58 +1,38 @@
-import MovieCard from '@components/MovieCard'
-import MovieGrid from '@components/MovieGrid'
 import React from 'react'
-import { useMoviesQuery, MoviesDocument, useMovies_By_SlugQuery } from '@data/graphql/generated/graphql'
 import DetailView from '@components/DetailView'
-import PersonCard from '@components/PersonCard'
+import { SanityMovie } from '@data/sanity/types/movie'
+import { getSanityImageUrl } from '@data'
+import { PortableText } from "@portabletext/react";
+import MovieGrid from '@components/MovieGrid';
+import PersonCard from '@components/PersonCard';
+import { Box, Heading, SimpleGrid } from '@chakra-ui/react';
 
 type Props = {
-	slug: string
+	movie: SanityMovie
 }
 
-const MovieView = ({slug}: Props) => {
-	
-	const {data, loading, error} = useMovies_By_SlugQuery({
-		variables: {
-			slug
-		}
-	})
-  const { allMovie } = data  || {}
+const MovieView = ({movie}: Props) => {
 
-	if (error) {
-		return (
-			<div>
-				<p>Error</p>
-				{ error.message }
-			</div>
-		)
-	}
+	const {title, releaseDate, poster} = movie
 
-	if (loading) {
-		return (
-			<div>
-				<p>Loading</p>
-			</div>
-		)
-	}
-
-	if ( !allMovie ) {
-		return (
-			<div>
-				<p>No data</p>
-			</div>
-		)
-	}
-
-	// get first movie
-	const movie = allMovie[0]
+	const imageUrl = getSanityImageUrl(poster)
 
 	return (
 		<>
 			<DetailView
-			 	title={movie.title || ''}
-				subtitle={movie.releaseDate?.split('-')[0] || ''}
-				image={movie.poster?.asset?.url || ''}
-			/>
+			 	title={title}
+				subtitle={releaseDate?.split('-')[0] || ''}
+				image={imageUrl || ''}
+			>
+				<PortableText value={movie.overview} />
+			</DetailView>
+			<SimpleGrid columns={1} spacing={5}>
+				<Box>
+					<Heading as='h2' size='2xl' textAlign={'center'}>
+						Characters
+					</Heading>
+				</Box>
+			</SimpleGrid>
 			{
 				movie.castMembers && (
 					<MovieGrid>
@@ -60,9 +40,9 @@ const MovieView = ({slug}: Props) => {
 							movie.castMembers.map((castMember, index) => (
 								<PersonCard
 									key={index}
-									name={castMember?.person?.name || ''}
+									name={''}
 									description={castMember?.characterName || ''}
-									avatar={castMember?.person?.image?.asset?.url || ''}
+									// avatar={castMember?.person?.image?.asset?.url || ''}
 								 />
 							))
 						}
@@ -72,9 +52,5 @@ const MovieView = ({slug}: Props) => {
 		</>
 	)
 }
-
-export const MoviesViewQueries = [
-	MoviesDocument
-]
 
 export default MovieView

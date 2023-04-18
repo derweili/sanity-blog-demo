@@ -1,9 +1,17 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import { addApolloState, initializeApollo } from '@data/client'
-import MoviesArchiveView, { MoviesViewQueries } from '@views/MoviesArchiveView'
+import MoviesArchiveView from '@views/MoviesArchiveView'
+import { sanityClient } from '@data'
+import { SanityMovie, getMovies } from '@data'
+import { PreviewSuspense } from "next-sanity/preview";
+import MoviesArchiveViewPreview from '@views/MoviesArchiveViewPreview'
 
-export default function Home() {
+type Props = {
+  preview: boolean
+  movies: SanityMovie[]
+}
+
+export default function Home({preview , movies}: any) {
 
   return (
     <>
@@ -14,22 +22,30 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <MoviesArchiveView />
+        {preview &&
+          (
+            <PreviewSuspense fallback="Loading...">
+              <MoviesArchiveViewPreview />
+            </PreviewSuspense>
+          )
+        }
+        <MoviesArchiveView movies={movies} />
       </main>
     </>
   )
 }
 
-export async function getServerSideProps() {
-  const apolloClient = initializeApollo()
+export async function getServerSideProps({preview = false}) {
 
-  // await for all queries
-  await Promise.all(MoviesViewQueries.map((query) => apolloClient.query({
-    query,
-    variables: {},
-  })))
+  if (preview) {
+    return { props: { preview } };
+  }
 
-  return addApolloState(apolloClient, {
-    props: {},
-  })
+  const movies = await getMovies(sanityClient)
+
+  return {
+    props: {
+      movies,
+    },
+  }
 }

@@ -10,7 +10,7 @@ import { documentListWidget } from 'sanity-plugin-dashboard-widget-document-list
 import { HelloWorldAction } from './components/workflow/actions'
 import { HelloWorldBadge } from './components/workflow/badges'
 import { myCustomTool } from './components/studio/tools'
-
+import { defaultDocumentNode } from './components/preview/defaultDocumentNode'
 
 export default defineConfig({
   name: 'default',
@@ -32,7 +32,11 @@ export default defineConfig({
         projectUsersWidget({ layout: { width: 'large' } }),
       ]
     }),
-    deskTool(),
+    deskTool(
+      {
+        defaultDocumentNode
+      }
+    ),
     visionTool(),
     //googleMapsInput(),
   ],

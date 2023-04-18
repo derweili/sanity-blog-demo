@@ -1,6 +1,0 @@
-query MOVIES_BY_SLUG($slug: String!) {
-  allMovie(where: {slug: {current: {eq: $slug}}}) {
-    ...MovieBaseData
-    ...MovieExtendedData
-  }
-}
