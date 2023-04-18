@@ -20,13 +20,8 @@ const MovieCard = ({title, description, year, url, image}: MovieCardProps) => {
 				}
 				<Stack mt='6' spacing='3'>
 					<Heading size='md'>{title}</Heading>
-					<Text>
-						This sofa is perfect for modern tropical spaces, baroque inspired
-						spaces, earthy toned spaces and for people who love a chic design with a
-						sprinkle of vintage design.
-					</Text>
 					<Text color='blue.600' fontSize='2xl'>
-						$450
+						{year}
 					</Text>
 				</Stack>
 			</CardBody>
@@ -35,12 +30,9 @@ const MovieCard = ({title, description, year, url, image}: MovieCardProps) => {
 				<ButtonGroup spacing='2'>
 					<Link href={url}>
 						<Button as="span" variant='solid' colorScheme='blue'>
-							Buy now
+							More
 						</Button>
 					</Link>
-					<Button variant='ghost' colorScheme='blue'>
-						Add to cart
-					</Button>
 				</ButtonGroup>
 			</CardFooter>
 		</Card>

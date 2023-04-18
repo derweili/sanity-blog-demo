@@ -1,66 +1,42 @@
 import MovieCard from '@components/MovieCard'
 import MovieGrid from '@components/MovieGrid'
 import React from 'react'
-import { useMoviesQuery, MoviesDocument } from '@data/graphql/generated/graphql'
+import { SanityMovie, getSanityImageUrl } from '@data'
 
-type Props = {}
-
-const MoviesArchiveView = (props: Props) => {
-	
-	const {data, loading, error} = useMoviesQuery()
-	console.log('MoviesArchiveView', loading, data);
-  const { allMovie } = data  || {}
-
-	if (error) {
-		return (
-			<div>
-				<p>Error</p>
-				{ error.message }
-			</div>
-		)
-	}
-	console.log('MoviesArchiveView', loading, data);
-
-	return (
-		<>
-			{
-				loading ? <p>Loading...</p> : <p>Loaded</p>
-			}
-
-
-			{
-				allMovie && (
-					<MovieGrid>
-						{ /* Loop over 5 times <MovieCard /> */ }
-
-						{
-							allMovie.map((movie) => {
-								const { title, releaseDate, slug, poster } = movie || {}
-								const { asset } = poster || {}
-
-								const { url : imageUrl } = asset || {}
-
-								return (
-									<MovieCard
-										key={movie._id}
-										title={movie.title || ''}
-										url={`/movie/${slug?.current || ''}`}
-										image={imageUrl || ''}
-										description={''}
-										year={releaseDate?.split('-')[0] || ''}
-										/>
-								)
-							})
-						}
-					</MovieGrid>
-				) 
-			}
-		</>
-	)
+type Props = {
+	movies: SanityMovie[]
 }
 
-export const MoviesViewQueries = [
-	MoviesDocument
-]
+const MoviesArchiveView = ({movies}: Props) => {
+
+	if (!movies) {
+		return null
+	}
+
+	return (
+		<MovieGrid>
+			{ /* Loop over 5 times <MovieCard /> */ }
+
+			{
+				movies.map((movie) => {
+					const { _id, title, slug: {current : currentSlug = ''}, poster, releaseDate } = movie || {}
+
+					const imageUrl = getSanityImageUrl(poster)
+
+					return (
+						<MovieCard
+							key={_id}
+							title={title || ''}
+							url={`/movie/${currentSlug || ''}`}
+							description={''}
+							year={releaseDate?.split('-')[0] || ''}
+							image={imageUrl || ''}
+						/>
+					)
+				})
+			}
+		</MovieGrid>
+	)
+}
 
 export default MoviesArchiveView

@@ -1,6 +1,0 @@
-# Write your query or mutation here
-query MOVIES {
-  allMovie {
-    ...MovieBaseData
-  }
-}
