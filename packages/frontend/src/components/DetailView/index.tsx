@@ -17,8 +17,6 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { PropsWithChildren } from 'react';
-import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-import { MdLocalShipping } from 'react-icons/md';
 
 interface Details {
   label: string;

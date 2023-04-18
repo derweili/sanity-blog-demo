@@ -1,5 +1,5 @@
-import {defineField, defineType} from 'sanity'
-import {MdPerson as icon} from 'react-icons/md'
+import { defineField, defineType } from 'sanity'
+import { MdPerson as icon } from 'react-icons/md'
 
 export default defineType({
   name: 'person',
@@ -32,6 +32,6 @@ export default defineType({
     }),
   ],
   preview: {
-    select: {title: 'name', media: 'image'},
+    select: { title: 'name', media: 'image' },
   },
 })
