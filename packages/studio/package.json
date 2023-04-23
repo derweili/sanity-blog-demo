@@ -24,6 +24,7 @@
     "sanity": "^3.9.0",
     "sanity-plugin-dashboard-widget-document-list": "^1.0.1",
     "sanity-plugin-iframe-pane": "^2.3.0",
+    "sanity-plugin-seo-pane": "^2.0.1",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {

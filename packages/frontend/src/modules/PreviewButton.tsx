@@ -1,6 +1,8 @@
 import { Box, Button } from "@chakra-ui/react"
+import { useRouter } from "next/router"
 
 import React from 'react'
+import { MouseEvent } from "react"
 
 const loadedInIframe = () => {
   console.log('loadedInIframe')
@@ -18,17 +20,24 @@ const loadedInIframe = () => {
 }
 
 const PreviewButton = () => {
+
+	const {asPath, push} = useRouter()
+
 	if( loadedInIframe() ) {
 		return null
 	}
+
+	const handleExitPreview = (e: MouseEvent) => {
+		e.preventDefault()
+		push(`/api/exit-preview?path=${asPath}`)
+	}
+
 	return (
 		<Box position="fixed" bottom="0" right="0" p="4">
 			<Button
 				colorScheme="blue"
-				onClick={() => {
-					window.location.href = '/api/exit-preview'
-				}
-			}>
+				onClick={handleExitPreview}
+				>
 				Exit Preview
 			</Button>
 		</Box>

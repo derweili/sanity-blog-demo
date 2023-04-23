@@ -34,6 +34,7 @@ const nextConfig = {
       },
     ]
   },
+  transpilePackages: ['mydesignguide'],
 }
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({

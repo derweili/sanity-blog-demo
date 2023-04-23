@@ -23,9 +23,11 @@ export default function Movie({movie, preview}: Props) {
 	if(!slug) return null
 
 	if ( preview ) return (
-		<PreviewSuspense fallback="Loading...">
-			<MovieViewPreview slug={ slug as string } />
-		</PreviewSuspense>
+		<>
+			<PreviewSuspense fallback="Loading...">
+				<MovieViewPreview slug={ slug as string } />
+			</PreviewSuspense>
+		</>
 	)
 
 	if (!movie) return null
