@@ -2,6 +2,7 @@ import MovieCard from '@components/MovieCard'
 import MovieGrid from '@components/MovieGrid'
 import React from 'react'
 import { SanityMovie, getSanityImageUrl } from '@data'
+import CtaButton from '@components/CtaButton'
 
 type Props = {
 	movies: SanityMovie[]
@@ -15,6 +16,9 @@ const MoviesArchiveView = ({movies}: Props) => {
 
 	return (
 		<MovieGrid>
+			<CtaButton>
+				Load more
+			</CtaButton>
 			{ /* Loop over 5 times <MovieCard /> */ }
 
 			{

@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const withLinaria = require('next-with-linaria');
 
 // get backend base URL from env if it exists
 const backendBaseURL = process.env.NEXT_PUBLIC_SANITY_STUDIO_BACKEND_BASE_URL || 'http://localhost:3333'
@@ -41,4 +42,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = withBundleAnalyzer(
+  withLinaria( nextConfig )
+)

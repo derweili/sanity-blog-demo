@@ -2,7 +2,7 @@ import { Container } from '@chakra-ui/react'
 import Nav from '@components/Layout/Nav'
 import '@styles/globals.css'
 import Theme from '@theme'
-import type { AppProps } from 'next/app'
+import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 
 const PreviewButton = dynamic(() => import('@modules/PreviewButton'), {
