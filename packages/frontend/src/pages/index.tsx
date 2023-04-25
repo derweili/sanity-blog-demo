@@ -5,10 +5,11 @@ import { sanityClient } from '@data'
 import { SanityMovie, getMovies } from '@data'
 import { PreviewSuspense } from "next-sanity/preview";
 import MoviesArchiveViewPreview from '@views/MoviesArchiveViewPreview'
+import { GetServerSideProps } from 'next'
 
 type Props = {
-  preview: boolean
-  movies: SanityMovie[]
+  preview?: boolean
+  movies?: SanityMovie[]
 }
 
 export default function Home({preview , movies}: any) {
@@ -36,13 +37,12 @@ export default function Home({preview , movies}: any) {
   )
 }
 
-export async function getServerSideProps({preview = false}) {
-
+export const getServerSideProps : GetServerSideProps<Props> = async ({preview = false, query}) => {
   if (preview) {
     return { props: { preview } };
   }
 
-  const movies = await getMovies(sanityClient)
+  const movies : SanityMovie[] = await getMovies(sanityClient) || []
 
   return {
     props: {

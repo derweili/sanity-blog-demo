@@ -5,11 +5,12 @@ import MovieView from "@views/MovieView"
 import { useRouter } from "next/router";
 import { PreviewSuspense } from "next-sanity/preview";
 import dynamic from 'next/dynamic'
+import { GetServerSideProps, GetServerSidePropsResult } from "next";
 
 const MovieViewPreview = dynamic(() => import("@views/MovieViewPreview"), { ssr: false });
 
 type Props = {
-	preview: boolean,
+	preview?: boolean,
 	movie?: SanityMovie
 }
 
@@ -39,9 +40,11 @@ export default function Movie({movie, preview}: Props) {
 	)
 }
 
-// Path: packages/frontend/src/pages/movies/[slug].tsx
-export async function getServerSideProps({ params, preview = false }: any) {
-  if (preview) {
+export const getServerSideProps : GetServerSideProps<Props> = async ({ params, preview = false, query }: any) => {
+
+	const { skipPreview } = query
+
+  if (preview && !skipPreview) {
     return { props: { preview } };
   }
 
