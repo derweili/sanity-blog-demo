@@ -1,7 +1,7 @@
 import MovieCard from '@components/MovieCard'
 import MovieGrid from '@components/MovieGrid'
-import React from 'react'
-import { SanityMovie, getSanityImageUrl } from '@data'
+import React, { useEffect, useState } from 'react'
+import { SanityMovie, getSanityImageUrl, sanityClient, subscribeToNews } from '@data'
 import CtaButton from '@components/CtaButton'
 
 type Props = {
@@ -10,20 +10,17 @@ type Props = {
 
 const MoviesArchiveView = ({movies}: Props) => {
 
+	
+
 	if (!movies) {
 		return null
 	}
 
 	return (
 		<MovieGrid>
-			<CtaButton>
-				Load more
-			</CtaButton>
-			{ /* Loop over 5 times <MovieCard /> */ }
-
 			{
 				movies.map((movie) => {
-					const { _id, title, slug: {current : currentSlug = ''}, poster, releaseDate } = movie || {}
+					const { _id, title, slug: {current : currentSlug = ''} = {}, poster, releaseDate } = movie || {}
 
 					const imageUrl = getSanityImageUrl(poster)
 

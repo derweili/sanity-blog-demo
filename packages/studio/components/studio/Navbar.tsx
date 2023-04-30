@@ -7,7 +7,7 @@ const Navbar = (props: NavbarProps) => {
 		<Stack>
       <Card padding={3} tone="caution">
         <Flex justify="center">
-          <Text>Important reminder! Remember this banner!</Text>
+          <Text>🚨 Important reminder! Remember this banner! 🚨</Text>
         </Flex>
       </Card>
       <>{props.renderDefault(props)}</>

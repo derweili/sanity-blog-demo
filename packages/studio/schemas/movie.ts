@@ -1,5 +1,5 @@
-import {defineField, defineType} from 'sanity'
-import {MdLocalMovies as icon} from 'react-icons/md'
+import { defineField, defineType } from 'sanity'
+import { MdLocalMovies as icon } from 'react-icons/md'
 
 export default defineType({
   name: 'movie',
@@ -25,6 +25,9 @@ export default defineType({
       name: 'overview',
       title: 'Overview',
       type: 'blockContent',
+      options: {
+        collapsible: true,
+      }
     }),
     defineField({
       name: 'releaseDate',
@@ -53,13 +56,13 @@ export default defineType({
       name: 'castMembers',
       title: 'Cast Members',
       type: 'array',
-      of: [{type: 'castMember'}],
+      of: [{ type: 'castMember' }],
     }),
     defineField({
       name: 'crewMembers',
       title: 'Crew Members',
       type: 'array',
-      of: [{type: 'crewMember'}],
+      of: [{ type: 'crewMember' }],
     }),
   ],
   preview: {

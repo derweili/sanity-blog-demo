@@ -1,4 +1,5 @@
 export * from './getMovies'
+export * from './getNews'
 export * from './sanityClient'
 export * from './types'
 export * from './getSanityImageUrl'

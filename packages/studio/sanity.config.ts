@@ -1,4 +1,4 @@
-import { defineConfig } from 'sanity'
+import { ObjectInputProps, defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { visionTool } from '@sanity/vision'
 //import {googleMapsInput} from '@sanity/google-maps-input'
@@ -11,6 +11,9 @@ import { HelloWorldAction } from './components/workflow/actions'
 import { HelloWorldBadge } from './components/workflow/badges'
 import { myCustomTool } from './components/studio/tools'
 import { defaultDocumentNode } from './components/preview/defaultDocumentNode'
+import { workflow } from 'sanity-plugin-workflow'
+import { myStructure } from './deskStructure'
+import { Progress } from './components/fields/Progress'
 
 export default defineConfig({
   name: 'default',
@@ -34,14 +37,22 @@ export default defineConfig({
     }),
     deskTool(
       {
-        defaultDocumentNode
+        defaultDocumentNode,
+        structure: myStructure,
+        title: 'Content',
       }
     ),
     visionTool(),
+    workflow({
+      // Required, list of document type names
+      // schemaTypes: ['article', 'product'],
+      schemaTypes: ['movie'],
+      // Optional, see below
+      // states: [],
+    }),
     //googleMapsInput(),
   ],
   tools: [myCustomTool() as any],
-
   document: {
     actions: [
       HelloWorldAction
@@ -50,7 +61,6 @@ export default defineConfig({
       HelloWorldBadge
     ]
   },
-
   schema: {
     types: schemaTypes,
   },
@@ -59,5 +69,21 @@ export default defineConfig({
       logo: Logo,
       navbar: Navbar,
     }
+  },
+  form: {
+    components: {
+      input: (props) => {
+        if (
+          props.id === 'root' &&
+          props.schemaType.type?.name === 'document' &&
+          props.schemaType.name === 'article'
+        ) {
+          return Progress({ ...props as ObjectInputProps, stringFields: ['title', 'slug'] })
+        }
+
+        return props.renderDefault(props)
+      },
+    }
+
   }
 })
