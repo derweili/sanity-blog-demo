@@ -14,6 +14,7 @@ import { defaultDocumentNode } from './components/preview/defaultDocumentNode'
 import { workflow } from 'sanity-plugin-workflow'
 import { myStructure } from './deskStructure'
 import { Progress } from './components/fields/Progress'
+import { media } from 'sanity-plugin-media'
 
 export default defineConfig({
   name: 'default',
@@ -50,6 +51,7 @@ export default defineConfig({
       // Optional, see below
       // states: [],
     }),
+    media(),
     //googleMapsInput(),
   ],
   tools: [myCustomTool() as any],
