@@ -1,17 +1,17 @@
 'use client';
+import CtaButton from "@components/CtaButton";
+import { css, cx } from "@linaria/core";
 import { usePathname, useRouter } from "next/navigation"
 
 import React from 'react'
 import { MouseEvent } from "react"
 
-const loadedInIframe = () => {
+const isLoadedInIframe = () => {
   // on ssr always return false
   if (typeof window === 'undefined') {
-    console.log('window is undefined', false)
     return false
   }
   try {
-    console.log(loadedInIframe, window.self !== window.top)
     return window.self !== window.top
   } catch (e) {
     return true
@@ -23,23 +23,48 @@ const PreviewButton = () => {
 	const {push} = useRouter()
 	const pathname = usePathname()
 
-	if( loadedInIframe() ) {
-		return <div>Test</div>
-	}
-
+	
 	const handleExitPreview = (e: MouseEvent) => {
 		e.preventDefault()
-		push(`/api/exit-preview?path=${pathname}`)
+		push(`/api/disable-draft?path=${pathname}`)
+	}
+
+	/**
+	 * Don't show preview button if loaded in iframe
+	 */
+	if( isLoadedInIframe() ) {
+		return null
 	}
 
 	return (
-		<button
-			onClick={handleExitPreview}
-			>
-			Exit Preview
+		<div
+				style={
+				{
+					position: 'fixed',
+					bottom: '0',
+					right: '0',
+					backgroundColor: 'var(--c-grey-100)',
+					padding: 'var(--s-m)',
+					border: 'none',
+					borderRadius: 'var(--s-xs)',
+					cursor: 'pointer',
+					fontSize: 'var(--fs-xxs)',
+					fontWeight: 'bold',
+					textTransform: 'uppercase',
+					display: 'flex',
+					flexDirection: 'column',
+					gap: 'var(--s-xs)',
+				}
+			}
+		>
+			Preview mode enabled
 
-			{pathname}
-		</button>
+			<CtaButton
+				onClick={handleExitPreview}
+				>
+				Exit Preview
+			</CtaButton>
+		</div>
 	)
 }
 

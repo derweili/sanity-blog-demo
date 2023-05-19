@@ -7,6 +7,9 @@ const backendBaseURL = process.env.NEXT_PUBLIC_SANITY_STUDIO_BACKEND_BASE_URL ||
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
+  experimental: {
+    serverActions: true,
+  },
   images: {
     remotePatterns: [
       {

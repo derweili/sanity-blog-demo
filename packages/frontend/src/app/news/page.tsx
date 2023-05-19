@@ -1,4 +1,5 @@
 import { SanityNews, getNews, sanityClient } from '@data'
+import NewsTickerView from '@views/NewsTickerView'
 import React from 'react'
 
 type Props = {}
@@ -6,16 +7,10 @@ type Props = {}
 const NewsPage = async (props: Props) => {
 	const news: SanityNews[] = await getNews(sanityClient) || []
 
+
 	return (
 		<>
-			<div>NewsPage</div>
-			{
-				news.map((article) => (
-					<article key={article._id}>
-						<h2>{article.title}</h2>
-					</article>
-				))
-			}
+			<NewsTickerView articles={news} />
 		</>
 	)
 }

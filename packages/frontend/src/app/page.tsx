@@ -21,7 +21,6 @@ const Homepage = async (props: Props) => {
 
 	return (
 		<>
-			<div>Movies</div>
 			<MoviesArchiveView movies={movies} />
 		</>
 	)

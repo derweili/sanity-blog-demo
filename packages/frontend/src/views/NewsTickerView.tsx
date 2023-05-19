@@ -1,5 +1,4 @@
-import MovieCard from '@components/MovieCard'
-import MovieGrid from '@components/MovieGrid'
+'use client';
 import React, { useEffect, useMemo, useState } from 'react'
 import { SanityMovie, SanityNews, getNews, getSanityImageUrl, sanityClient, subscribeToNews } from '@data'
 import CtaButton from '@components/CtaButton'
@@ -13,19 +12,24 @@ const NewsTickerView = ({articles : _articles}: Props) => {
 
 	const [articles, setArticles] = useState(_articles)
 
+	/**
+	 * Subscribe to news
+	 */
 	useEffect(() => {
 		const subscription = subscribeToNews(sanityClient, ({document, transition, id}) => {
-	
+			
+			// Check if article is new
 			const isNewArticle = document && !articles.find((article) => article._id === document._id)
 
+			// Add the article to the list of articles
 			if (transition === 'appear' && isNewArticle && document) {
 				setArticles(( currentArticles ) => {
 					return [document, ...currentArticles]
 				})
 			}
 			
+			// Update the article in the list of articles
 			if( transition === 'update' && ! isNewArticle && document) {
-
 				setArticles(( currentArticles ) => {
 					const newArticles = currentArticles.map((article) => {
 						if (article._id === document._id) {
@@ -39,8 +43,8 @@ const NewsTickerView = ({articles : _articles}: Props) => {
 				})
 			}
 
+			// Remove the article from the list of articles
 			if (transition === 'disappear' && id) {
-				const newArticles = articles.filter((article) => article._id !== id)
 
 				setArticles(currentArticles => currentArticles.filter((article) => article._id !== id))
 			}
@@ -48,14 +52,12 @@ const NewsTickerView = ({articles : _articles}: Props) => {
 
 
 		return () => {
-			console.log('unsubscribe', subscription)
+			// Clean up subscription
 			subscription.then((sub) => {
-				console.log('unsubscribing', sub)
 				sub.unsubscribe()
 			})
 		}
 	}, [])
-	
 
 	// Sort articles by updated date
 	const sortedArticles = useMemo(() => {
@@ -73,16 +75,15 @@ const NewsTickerView = ({articles : _articles}: Props) => {
 
 	return (
 		<div>
-			<h2>News</h2>
+			<h2>Newsticker</h2>
 			<ul>
 				{
 					sortedArticles.map((article) => {
 						const { _id, title } = article || {}
 
-
 						return (
 							<li key={_id}>
-								<strong>{title}</strong>
+								<strong>{title}</strong><br />
 								
 								{/* Updated time */}
 								<span>

@@ -1,11 +1,13 @@
 import BaseLayout from '@components/BaseLayout';
+import Nav from '@components/Nav';
+import { cx } from '@linaria/core';
+import Navigation from '@modules/Navigation';
+import PreviewButton from '@modules/PreviewButton';
+import Theme from '@theme';
+import { styles } from '@theme/styles';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-
-const PreviewButton = dynamic(() => import('@modules/PreviewButton'), {
-  loading: () => <div>Loading preview button</div>,
-  ssr: false,
-})
+import { draftMode } from 'next/headers';
 
 /**
  * Root layout for all pages
@@ -22,15 +24,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { isEnabled: isDraftModeEnabled } = draftMode();
+
   return (
 		<html lang="en">
-				<body>
-          <BaseLayout>
-					  {children}
-          </BaseLayout>
-					{/* {
-						<PreviewButton />
-					} */}
+				<body className={cx(styles)} style={{margin: 0, padding: 0}}>
+            <Navigation />
+            <BaseLayout>
+              {children}
+            </BaseLayout>
+
+            {
+              isDraftModeEnabled && <PreviewButton />
+            }
 				</body>
 			</html>
   );

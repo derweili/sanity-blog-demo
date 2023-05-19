@@ -50,8 +50,8 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, { schemaType
 					.options({
 						url: (doc: any) => {
 							const previewUrl = doc?.slug?.current
-								? `${baseUrl}/api/preview?slug=${doc.slug.current}`
-								: `${baseUrl}/api/preview`
+								? `${baseUrl}/api/draft?slug=${doc.slug.current}`
+								: `${baseUrl}/api/draft`
 
 							return previewUrl
 						}
