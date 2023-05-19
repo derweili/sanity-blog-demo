@@ -1,11 +1,10 @@
-import { Box, Button } from "@chakra-ui/react"
-import { useRouter } from "next/router"
+'use client';
+import { usePathname, useRouter } from "next/navigation"
 
 import React from 'react'
 import { MouseEvent } from "react"
 
 const loadedInIframe = () => {
-  console.log('loadedInIframe')
   // on ssr always return false
   if (typeof window === 'undefined') {
     console.log('window is undefined', false)
@@ -21,26 +20,26 @@ const loadedInIframe = () => {
 
 const PreviewButton = () => {
 
-	const {asPath, push} = useRouter()
+	const {push} = useRouter()
+	const pathname = usePathname()
 
 	if( loadedInIframe() ) {
-		return null
+		return <div>Test</div>
 	}
 
 	const handleExitPreview = (e: MouseEvent) => {
 		e.preventDefault()
-		push(`/api/exit-preview?path=${asPath}`)
+		push(`/api/exit-preview?path=${pathname}`)
 	}
 
 	return (
-		<Box position="fixed" bottom="0" right="0" p="4">
-			<Button
-				colorScheme="blue"
-				onClick={handleExitPreview}
-				>
-				Exit Preview
-			</Button>
-		</Box>
+		<button
+			onClick={handleExitPreview}
+			>
+			Exit Preview
+
+			{pathname}
+		</button>
 	)
 }
 

@@ -10,10 +10,8 @@ type Props = {
 
 const MoviesArchiveView = ({movies}: Props) => {
 
-	
-
 	if (!movies) {
-		return null
+		return <div>No movies</div>
 	}
 
 	return (

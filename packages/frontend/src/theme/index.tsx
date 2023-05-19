@@ -1,11 +1,16 @@
-import { ChakraProvider } from '@chakra-ui/react'
+'use client';
+
+import { css, cx } from '@linaria/core';
 import React, {FC, PropsWithChildren} from 'react'
+import { typography } from './styles/typography';
+import { styles } from './styles';
+
 
 const Theme: FC<PropsWithChildren> = ({children}) => {
 	return (
-		<ChakraProvider>
+		<div className={cx(styles)}>
 			{children}
-		</ChakraProvider>
+		</div>
 	)
 }
 

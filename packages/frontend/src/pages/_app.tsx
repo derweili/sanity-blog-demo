@@ -1,4 +1,3 @@
-import { Container } from '@chakra-ui/react'
 import Nav from '@components/Layout/Nav'
 import '@styles/globals.css'
 import Theme from '@theme'
@@ -17,9 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Nav />
       {/* Spacer */}
       <div style={{ height: '32px' }} />
-      <Container maxW={'1200'}>
         <Component {...pageProps} />
-      </Container>
 
       {/* Floating bot on bottom right */}
       {

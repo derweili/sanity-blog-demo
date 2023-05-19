@@ -3,7 +3,6 @@ import MovieGrid from '@components/MovieGrid'
 import React, { useEffect, useMemo, useState } from 'react'
 import { SanityMovie, SanityNews, getNews, getSanityImageUrl, sanityClient, subscribeToNews } from '@data'
 import CtaButton from '@components/CtaButton'
-import { Box, Heading, ListItem, SimpleGrid, UnorderedList } from '@chakra-ui/react'
 import Head from 'next/head'
 
 type Props = {
@@ -73,28 +72,28 @@ const NewsTickerView = ({articles : _articles}: Props) => {
 	}
 
 	return (
-		<SimpleGrid columns={1} spacing={5}>
-			<Heading as="h2" size="xl" mb={5}>News</Heading>
-			<UnorderedList>
+		<div>
+			<h2>News</h2>
+			<ul>
 				{
 					sortedArticles.map((article) => {
 						const { _id, title } = article || {}
 
 
 						return (
-							<ListItem key={_id} marginBlockEnd={2}>
-								<Heading as="h3" size="lg" mb={2}>{title}</Heading>
+							<li key={_id}>
+								<strong>{title}</strong>
 								
 								{/* Updated time */}
-								<Box as="span" fontSize="sm" color="gray.500">
+								<span>
 									{new Date(article._updatedAt).toLocaleString('de-DE')}
-								</Box>
-							</ListItem>
+								</span>
+							</li>
 						)
 					})
 				}
-			</UnorderedList>
-		</SimpleGrid>
+			</ul>
+		</div>
 	)
 }
 

@@ -1,20 +1,30 @@
+import { css, cx } from '@linaria/core'
 import React, { PropsWithChildren } from 'react'
-import { Box, SimpleGrid } from '@chakra-ui/react'
+
+const movieGridStyles = css`
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 20px;
+
+	@media (max-width: 768px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+`
 
 const MovieGrid = ({children}: PropsWithChildren) => {
 	return (
-		<SimpleGrid columns={3} spacing={5}>
+		<div className={cx(movieGridStyles)}>
 			{/* Loop over children and wrap with <Box> component */}
 			{
 				React.Children.map(children, (child) => {
 					return (
-						<Box>
+						<div>
 							{child}
-						</Box>
+						</div>
 					)
 				})
 			}
-		</SimpleGrid>
+		</div>
 	)
 }
 

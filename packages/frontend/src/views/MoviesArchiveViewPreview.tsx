@@ -1,3 +1,4 @@
+'use client';
 import MovieCard from '@components/MovieCard'
 import MovieGrid from '@components/MovieGrid'
 import React from 'react'

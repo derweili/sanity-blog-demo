@@ -11,7 +11,8 @@
     "start:studio": "npm run start -w studio",
     "start:frontend": "npm run start -w frontend",
     "start": "concurrently --kill-others-on-fail \"npm run start:*\"",
-    "build": "npm run build --workspaces"
+    "build": "npm run build --workspaces",
+    "storybook": "npm run storybook -w frontend"
   },
   "author": "",
   "license": "ISC",

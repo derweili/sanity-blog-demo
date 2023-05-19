@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import { Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Stack, Text } from '@chakra-ui/react'
 import Image from 'next/image'
+import { css, cx } from '@linaria/core'
+import CtaButton from '@components/CtaButton'
 
 type MovieCardProps = {
 	title: string
@@ -11,31 +12,44 @@ type MovieCardProps = {
 	image?: string
 }
 
+const movieCardStyles = css`
+	border: 1px solid var(--c-grey-100);
+	border-radius: var(--s-s);
+	overflow: hidden;
+`
+
+const movieCardImage = css`
+	width: 100%;
+	height: 150px;
+	position: relative;
+`
+
+const movieCardContentStyles = css`
+	padding: var(--s-m) var(--s-m) var(--s-l) var(--s-m);
+
+	h2 {
+		margin-block-start: 0;
+	}
+`
+
 const MovieCard = ({title, description, year, url, image}: MovieCardProps) => {
 	return (
-		<Card maxW='sm'>
-			<CardBody>
+		<div className={cx(movieCardStyles)}>
 				{
-					image && <Image src={image} width={500} height={300} alt={`${title} poster`} />
+					image && <div className={cx(movieCardImage)}><Image src={image} fill style={{objectFit: 'cover'}} alt={`${title} poster`} /></div>
 				}
-				<Stack mt='6' spacing='3'>
-					<Heading size='md'>{title}</Heading>
-					<Text color='blue.600' fontSize='2xl'>
-						{year}
-					</Text>
-				</Stack>
-			</CardBody>
-			<Divider />
-			<CardFooter>
-				<ButtonGroup spacing='2'>
+				<div className={cx(movieCardContentStyles)}>
+					<h2>{title}</h2>
+					<p>
+						<strong>{year}</strong>
+					</p>
 					<Link href={url}>
-						<Button as="span" variant='solid' colorScheme='blue'>
+						<CtaButton>
 							More
-						</Button>
+						</CtaButton>
 					</Link>
-				</ButtonGroup>
-			</CardFooter>
-		</Card>
+				</div>
+		</div>
 	)
 }
 

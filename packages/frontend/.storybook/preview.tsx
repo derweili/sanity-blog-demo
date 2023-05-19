@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/react";
+import { Preview } from "@storybook/react";
 import Theme from '../src/theme'
 import React from "react";
 
@@ -10,11 +10,6 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/,
       },
-    },
-    chakra: {
-      theme: {
-
-      }
     }
   },
   decorators: [

@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { draftMode } from 'next/headers';
 
 export default function preview(req: NextApiRequest, res: NextApiResponse) {
 
